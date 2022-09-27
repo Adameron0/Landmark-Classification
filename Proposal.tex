@@ -1,0 +1,81 @@
+\documentclass{article}
+\setlength{\oddsidemargin}{-0.3in}
+\setlength{\evensidemargin}{-0.3in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-.7in}
+\setlength{\textheight}{9.6in}
+\usepackage{amsmath,amsfonts,amssymb,graphicx,fancyhdr,latexsym,float,amsthm,bm,graphicx,mathtools,txfonts,enumitem,listings,verbatim,color}
+\usepackage{epsfig}
+\usepackage[ruled,vlined, linesnumbered]{algorithm2e}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\bS}{\mathcal{S}}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=cyan, citecolor=black}
+\usepackage[
+style=authoryear,
+]{biblatex}
+\addbibresource{ProposalBib.bib}
+\title{STOR 566 Project Proposal}
+\author{
+	Adam Dameron, Anthony Kayode, Vivian Moore, David Peery
+}
+
+
+\DeclareMathOperator{\tr}{tr}
+
+\newcounter{chunk}
+\parskip=11pt
+\parindent=0mm
+
+\pagestyle{fancy}
+\lhead{STOR 566 Final Project Proposal}
+\rhead{\textit{Group $1$}}
+
+\begin{document}
+	
+\maketitle
+
+\section*{Problem Description}
+
+The objective of dating apps is to meet and connect with like-minded individuals \parencite{datingapps}. However, not all individuals who use these apps feel like the apps are fulfilling this objective. A Pew Research survey found that 26\% of Americans believed that dating apps have a negative effect on dating and relationships, and of those 26\% of Americans, 14\% stated that their biggest complaint about dating apps is a lack of personal/emotional connections \parencite{dating}. 
+
+
+Our project aims to resolve this sentiment of a lack of personal connection that some Americans find when they are using dating apps. According to a 2017 study conducted by Hinge, travel photos receive 30\% more likes than the average photo a user uploads to their profile \parencite{lust}. Since users have a proclivity toward travel photos, what if the app was able to curate a queue of matches where both the user and the potential matches have traveled to the same place? This would solve the problem of a lack of personal connections by allowing for users to connect with more like-minded individuals on the basis of mutual experiences they may have had by traveling to the same destinations.
+To give an example of how this might work, if a user adds a picture of them at the Eiffel Tower to their profile, an algorithm would be able to classify the photo as being taken at this destination, and then subsequently recommend potential matches who have also been to the Eiffel Tower. This would allow users to bond over similar experiences and generate more personal connections between users.
+
+
+\section*{Related Works}
+
+\subsection*{Landmark and Monument Recognition with Deep Learning }
+
+This monument recognition study both utilizes a dataset that is quite similar to the one being used in this experiment, and demonstrates the real world applicability of such studies. With greater-than 95\% accuracy even with small, low quality datasets, the potential results of similar experiments performed with higher quality datasets are quite promising \parencite{Landmark}.
+
+\subsection*{Robust Training of Social Media Image Classification Models for Rapid Disaster Response}
+
+This disaster study further demonstrates the validity of utilizing images from social media (Twitter) to train highly accurate models. In addition, both this study, and the landmark study conclude that data consolidation helps with the accuracy of these models. Additionally, the performance results on the 4 highly specialized tasks in the disaster study give us a good idea of the relative performance of these ten models \parencite{Robust}.
+
+\section*{Proposed Work}
+
+We will be using transfer learning to perform a supervised machine learning task: classifying images into 12 different categories. We will compare the performance of at least three different state of the art computer vision neural net architectures, including the following:
+
+\subsection*{\href{https://huggingface.co/google/vit-base-patch16-224}{Vision Transformer}}
+A transformer encoder model that has been pre-trained on a large image dataset, and by using transfer learning, we can fine tune it to fit the needs of our problem. This model was trained on ImageNet-21k, a dataset with 14 million images in 21,843 different classes.
+
+\subsection*{\href{https://huggingface.co/microsoft/resnet-50}{ResNet-50 v1.5}}
+This model was first introduced in the paper Deep Residual Learning for Image Recognition by He et al. It is a state of the art method that uses residual learning and skip connections. By using transfer learning, we can train it to fit our model. This model was trained on ImageNet-1k, a dataset with 1,281,167 images in 1,000 different classes.
+
+\subsection*{\href{https://huggingface.co/microsoft/cvt-13}{Convolutional Vision Transformer (CvT)}}
+A model that has been pre-trained on a large image dataset, and by using transfer learning, we can fine tune it to fit the needs of our problem. This is an updated version of Vision Transformer that additionally incorporates convolution. This model was also trained on ImageNet-1k.
+
+
+
+\section*{Evaluation Metric}
+
+For each method we use, we will split our data into a training set and a test set. To ensure comparable outcomes, we will use the same train-test split for each model. We can then calculate the mis-classification (error) rate for each model, and see which one is the lowest. Additionally, we will keep a record of the amount of time it takes to train the model, and by using these two metrics, we can determine which model is best for computational cost, and which is best for accuracy.
+
+
+\printbibliography
+
+\end{document}
